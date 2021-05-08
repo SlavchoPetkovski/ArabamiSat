@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Arabami Sat
+
+  Created by Slavcho Petkovski on 8.5.21.
+  
+*/
+
+"FB_Login_Button_Title" = "Facebook ile giriş";
+"Google_Login_Button_Title" = "Google ile giriş";
+"OK" = "OK";
+"Error" = "An error occured";
+"LoginError" = "Login attempt failed. Please try again later";
+"UnknownUser" = "Unknown user";
