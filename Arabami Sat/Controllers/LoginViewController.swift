@@ -51,19 +51,12 @@ class LoginViewController: BaseViewController {
             }
 
             let username = auth.additionalUserInfo?.profile?["name"] as? String
+            User.shared.username = username
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: AppConstants.loginSegue, sender: username)
             }
         }
 
         authManager.signIn()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == AppConstants.loginSegue,
-           let carListVC = segue.destination as? CarListViewController,
-           let username = sender as? String {
-            carListVC.fullName = username
-        }
     }
 }

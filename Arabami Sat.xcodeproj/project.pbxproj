@@ -10,6 +10,7 @@
 		7C9AACB5264726BA00007E89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C9AACB4264726BA00007E89 /* GoogleService-Info.plist */; };
 		7C9AACB926472C1300007E89 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACB826472C1300007E89 /* AuthenticationManager.swift */; };
 		7C9AACBC2647357000007E89 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACBB2647357000007E89 /* BaseViewController.swift */; };
+		7C9AACBF26481E4900007E89 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACBE26481E4900007E89 /* User.swift */; };
 		7CDED46B26457C4C00DDB3BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDED46A26457C4C00DDB3BE /* AppDelegate.swift */; };
 		7CDED46F26457C4C00DDB3BE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDED46E26457C4C00DDB3BE /* LoginViewController.swift */; };
 		7CDED47226457C4C00DDB3BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CDED47026457C4C00DDB3BE /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		7C9AACB4264726BA00007E89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C9AACB826472C1300007E89 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		7C9AACBB2647357000007E89 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7C9AACBE26481E4900007E89 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7CDED46726457C4C00DDB3BE /* Arabami Sat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Arabami Sat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CDED46A26457C4C00DDB3BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CDED46E26457C4C00DDB3BE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		7C9AACBD26481DFC00007E89 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7C9AACBE26481E4900007E89 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		7CDED45E26457C4C00DDB3BE = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +107,7 @@
 			children = (
 				7CDED47F2645F2B800DDB3BE /* AppDelegate */,
 				7CDED47E2645F2AB00DDB3BE /* Controllers */,
+				7C9AACBD26481DFC00007E89 /* Models */,
 				7C9AACB726472BF400007E89 /* Managers */,
 				7CDED4812645F55300DDB3BE /* Extensions */,
 				7CDED4802645F2CC00DDB3BE /* Resources */,
@@ -347,6 +358,7 @@
 				7C9AACB926472C1300007E89 /* AuthenticationManager.swift in Sources */,
 				7CDED4832645F56B00DDB3BE /* Extensions.swift in Sources */,
 				7CDED48F2645FF3E00DDB3BE /* LocalizedStrings.swift in Sources */,
+				7C9AACBF26481E4900007E89 /* User.swift in Sources */,
 				7C9AACBC2647357000007E89 /* BaseViewController.swift in Sources */,
 				7CDED46B26457C4C00DDB3BE /* AppDelegate.swift in Sources */,
 				7CDED495264601BB00DDB3BE /* Constants.swift in Sources */,

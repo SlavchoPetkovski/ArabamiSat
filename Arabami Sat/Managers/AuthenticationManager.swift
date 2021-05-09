@@ -42,6 +42,7 @@ class AuthenticationManager: NSObject {
     }
 
     class func logout() {
+        User.shared.removeUser()
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
@@ -76,8 +77,7 @@ class AuthenticationManager: NSObject {
     private func signInWithGoogle() {
         GIDSignIn.sharedInstance().clientID = AppConstants.googleClientID
         GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self.viewController
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        GIDSignIn.sharedInstance().presentingViewController = self.viewController
         GIDSignIn.sharedInstance().signIn()
     }
 }
