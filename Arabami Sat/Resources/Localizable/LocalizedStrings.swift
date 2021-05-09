@@ -14,4 +14,12 @@ struct Strings {
     static let Error = NSLocalizedString("Error", comment: "")
     static let LoginError = NSLocalizedString("LoginError", comment: "")
     static let UnknownUser = NSLocalizedString("UnknownUser", comment: "")
+    static let Manufacturer = NSLocalizedString("Manufacturer", comment: "")
+    static let Model = NSLocalizedString("Model", comment: "")
+    static let Success = NSLocalizedString("Success", comment: "")
+    static let CarAdded = NSLocalizedString("CarAdded", comment: "")
+    static let NoImageSelected = NSLocalizedString("NoImageSelected", comment: "")
+    static let NoManufacturer = NSLocalizedString("NoManufacturer", comment: "")
+    static let NoModel = NSLocalizedString("NoModel", comment: "")
+    static let SelectImage = NSLocalizedString("SelectImage", comment: "")
 }

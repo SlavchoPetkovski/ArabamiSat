@@ -44,4 +44,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url)
     }
+
+    func logoutIfNeeded() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(
+            withIdentifier: String(describing: LoginViewController.self))
+        if let navigationController = self.window?.rootViewController as? UINavigationController {
+            navigationController.pushViewController(loginViewController, animated: true)
+            navigationController.viewControllers = [loginViewController]
+            navigationController.dismiss(animated: true, completion: nil)
+        }
+    }
 }

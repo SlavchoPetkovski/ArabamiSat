@@ -78,7 +78,12 @@ class AuthenticationManager: NSObject {
         GIDSignIn.sharedInstance().clientID = AppConstants.googleClientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().presentingViewController = self.viewController
-        GIDSignIn.sharedInstance().signIn()
+
+        if GIDSignIn.sharedInstance().hasPreviousSignIn() {
+            GIDSignIn.sharedInstance().restorePreviousSignIn()
+        } else {
+            GIDSignIn.sharedInstance().signIn()
+        }
     }
 }
 

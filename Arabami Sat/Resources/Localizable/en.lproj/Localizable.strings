@@ -12,3 +12,11 @@
 "Error" = "An error occured";
 "LoginError" = "Login attempt failed. Please try again later";
 "UnknownUser" = "Unknown user";
+"Model" = "Model";
+"Manufacturer" = "Manufacturer";
+"Success" = "Success";
+"CarAdded" = "Your car was successfully created";
+"NoImageSelected" = "Please select an image";
+"NoManufacturer" = "Please enter a manufacturer name";
+"NoModel" = "Please enter a model name";
+"SelectImage" = "Select image from gallery";

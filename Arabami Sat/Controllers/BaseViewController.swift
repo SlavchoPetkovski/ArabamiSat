@@ -15,9 +15,9 @@ class BaseViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    func showAlert(with title: String, message: String, completion: ((String) -> Void)? = nil) {
+    func showAlert(with title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: Strings.OKButton, style: .default, handler: nil)
+        let action = UIAlertAction(title: Strings.OKButton, style: .default, handler: completion)
 
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
