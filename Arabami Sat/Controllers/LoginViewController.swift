@@ -40,9 +40,9 @@ class LoginViewController: BaseViewController {
 
     private func loginTapped(type: AuthType) {
         let authManager  = AuthenticationManager(type: type, viewController: self)
-        authManager.handler = { auth, error in
+        authManager.handler = { [weak self] auth, error in
             if let error = error {
-                self.showAlert(with: Strings.Error, message: error.localizedDescription, completion: nil)
+                self?.showAlert(with: Strings.Error, message: error.localizedDescription, completion: nil)
                 return
             }
 
@@ -53,7 +53,7 @@ class LoginViewController: BaseViewController {
             let username = auth.additionalUserInfo?.profile?["name"] as? String
             User.shared.username = username
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: AppConstants.loginSegue, sender: username)
+                self?.performSegue(withIdentifier: AppConstants.loginSegue, sender: username)
             }
         }
 

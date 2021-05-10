@@ -28,6 +28,7 @@ class DBManager: NSObject {
     }
 
     var listener: ListenerRegistration?
+    var nsCache = NSCache<NSString, UIImage>()
 
     func addNewCar(car: Car, completion: @escaping (Error?) -> Void) {
         // Also we can use .addDocument(from:) where the imput param (in our case Car) conforms to Encodable
@@ -37,17 +38,6 @@ class DBManager: NSObject {
             FirebaseConstants.modelKey: car.model ?? ""
         ]) { err in
             completion(err)
-        }
-    }
-    
-    func getAllCars(completion: @escaping ([Car]?, Error?) -> Void) {
-        self.db.collection(FirebaseConstants.carsCollection).getDocuments { (querySnapshot, err) in
-            if let err = err {
-                completion(nil, err)
-            } else {
-                let cars = querySnapshot?.documents.compactMap({try? $0.data(as: Car.self)})
-                completion(cars, nil)
-            }
         }
     }
     
@@ -77,6 +67,15 @@ class DBManager: NSObject {
                 try? realm.safeWrite {
                     realm.delete(realmImage)
                 }
+            }
+        }
+    }
+    
+    func deleteLocalDatabase() {
+        DispatchQueue.main.async {
+            let realm = self.getRealm()
+            try? realm.safeWrite {
+                realm.deleteAll()
             }
         }
     }

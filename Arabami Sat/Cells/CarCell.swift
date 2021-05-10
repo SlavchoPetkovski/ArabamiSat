@@ -22,4 +22,17 @@ class CarCell: UITableViewCell {
         self.carManufacturerTitleLbl.text = Strings.Manufacturer + ":"
         self.carModelTitleLbl.text = Strings.Model + ":"
     }
+    
+    func setup(car: Car) {
+        if let imgId = car.imageRealmId {
+            if let image = DBManager.shared.nsCache.object(forKey: imgId as NSString) {
+                self.carImage.image = image
+            } else if let imageData = DBManager.shared.getImageData(id: imgId) {
+                self.carImage.image = UIImage(data: imageData)
+            }
+        }
+        
+        self.carManufacturerLbl.text = car.manufacturer
+        self.carModelLbl.text = car.model
+    }
 }

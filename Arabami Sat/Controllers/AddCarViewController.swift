@@ -172,14 +172,18 @@ class AddCarViewController: BaseViewController {
             let manufacturer = self.manufacturerTF.text
             let model = self.modelTF.text
             let id = UUID().uuidString
-            let newCar = Car(imageRealmId: id, manufacturer: manufacturer, model: model)
             
-            if let imageData = self.carImageView.image?.jpegData(compressionQuality: AppConstants.imageCompression) {
-                DBManager.shared.saveImageToRealm(with: imageData, id: id)
+            guard let image = self.carImageView.image,
+                  let imageData = image.jpegData(compressionQuality: AppConstants.imageCompression) else {
+                self.showAlert(with: Strings.Error, message: Strings.NoImageSelected)
+                return
             }
-
+            
+            let newCar = Car(imageRealmId: id, manufacturer: manufacturer, model: model)
+            DBManager.shared.saveImageToRealm(with: imageData, id: id)
             DBManager.shared.addNewCar(car: newCar) { error in
                 guard let err = error else {
+                    DBManager.shared.nsCache.setObject(image, forKey: id as NSString)
                     return
                 }
 

@@ -35,12 +35,24 @@ class CarDetailsViewController: UIViewController {
     }
     
     private func loadImage() {
-        guard let imgId = self.car.imageRealmId,
-              let imgData = DBManager.shared.getImageData(id: imgId) else {
+//        guard let imgId = self.car.imageRealmId,
+//              let imgData = DBManager.shared.getImageData(id: imgId) else {
+//            return
+//        }
+        
+        guard let imgId = self.car.imageRealmId else {
             return
         }
         
-        self.carImage.image = UIImage(data: imgData)
+        guard let image = DBManager.shared.nsCache.object(forKey: imgId as NSString) else {
+            if let imgData = DBManager.shared.getImageData(id: imgId) {
+                self.carImage.image = UIImage(data: imgData)
+            }
+            
+            return
+        }
+        
+        self.carImage.image = image // UIImage(data: imgData)
     }
 
     private func setupLabels() {
