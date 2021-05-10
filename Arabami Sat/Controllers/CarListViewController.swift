@@ -12,6 +12,7 @@ class CarListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var cars = [Car]()
+    private var carsChangedNotification: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,37 @@ class CarListViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.title = User.shared.username ?? Strings.UnknownUser
         self.tableView.tableFooterView = UIView()
+        DBManager.shared.addListener()
+        self.setupNotifications()
+        
+        DBManager.shared.getAllCars(completion: { cars, error in
+            guard error == nil, let cars = cars else {
+                return
+            }
+            
+            self.cars = cars
+            self.tableView.reloadData()
+        })
+    }
+    
+    deinit {
+        DBManager.shared.removeListener()
+        NotificationCenter.default.removeObserver(self.carsChangedNotification as Any)
+    }
+    
+    private func setupNotifications() {
+        self.carsChangedNotification = NotificationCenter.default.addObserver(forName: NotificationNames.refreshUInotification, object: nil, queue: .main) { [weak self] notification in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            guard let cars = notification.object as? [Car] else {
+                return
+            }
+            
+            strongSelf.cars = cars
+            strongSelf.tableView.reloadData()
+        }
     }
 
     @IBAction func logout(_ sender: Any) {
@@ -43,13 +75,6 @@ class CarListViewController: UIViewController {
         let car = self.cars[selectedRow]
         return CarDetailsViewController(coder: coder, car: car)
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == AppConstants.addCarSegue,
-           let addVC = segue.destination as? AddCarViewController {
-            addVC.delegate = self
-        }
-    }
 }
 
 extension CarListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -64,15 +89,14 @@ extension CarListViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let car = self.cars[indexPath.row]
+        if let imgId = car.imageRealmId,
+           let imageData = DBManager.shared.getImageData(id: imgId) {
+            cell.carImage.image = UIImage(data: imageData)
+        }
+        
         cell.carManufacturerLbl.text = car.manufacturer
         cell.carModelLbl.text = car.model
 
         return cell
-    }
-}
-
-extension CarListViewController: AddCarDelegate {
-    func addCar(car: Car) {
-        print("car added delegate")
     }
 }

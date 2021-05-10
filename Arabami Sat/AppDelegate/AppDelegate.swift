@@ -9,6 +9,7 @@ import UIKit
 import FBSDKCoreKit
 import Firebase
 import GoogleSignIn
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         FirebaseApp.configure()
+        self.realmMigrate()
 
         if AuthenticationManager.isUserAuthenticated {
             rootVC = storyboard.instantiateViewController(
@@ -43,6 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    func realmMigrate() {
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: { (_, oldSchemaVersion) in
+            if oldSchemaVersion < 1 {
+            }
+        })
     }
 
     func logoutIfNeeded() {

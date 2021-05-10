@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C8C80CA26487F5A00BE3998 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80C926487F5A00BE3998 /* Reachability.swift */; };
+		7C8C80CC26495CBE00BE3998 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80CB26495CBE00BE3998 /* DBManager.swift */; };
+		7C8C80CE26496BF000BE3998 /* RealmImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80CD26496BF000BE3998 /* RealmImage.swift */; };
+		7C8C80D02649865C00BE3998 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80CF2649865C00BE3998 /* Commons.swift */; };
 		7C9AACB5264726BA00007E89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C9AACB4264726BA00007E89 /* GoogleService-Info.plist */; };
 		7C9AACB926472C1300007E89 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACB826472C1300007E89 /* AuthenticationManager.swift */; };
 		7C9AACBC2647357000007E89 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACBB2647357000007E89 /* BaseViewController.swift */; };
@@ -30,6 +34,10 @@
 
 /* Begin PBXFileReference section */
 		1216CFA6BE6CDD4785948E2E /* Pods-Arabami Sat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arabami Sat.debug.xcconfig"; path = "Target Support Files/Pods-Arabami Sat/Pods-Arabami Sat.debug.xcconfig"; sourceTree = "<group>"; };
+		7C8C80C926487F5A00BE3998 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		7C8C80CB26495CBE00BE3998 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		7C8C80CD26496BF000BE3998 /* RealmImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmImage.swift; sourceTree = "<group>"; };
+		7C8C80CF2649865C00BE3998 /* Commons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		7C9AACB4264726BA00007E89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C9AACB826472C1300007E89 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		7C9AACBB2647357000007E89 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				7C9AACB826472C1300007E89 /* AuthenticationManager.swift */,
+				7C8C80CB26495CBE00BE3998 /* DBManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -89,6 +98,7 @@
 			children = (
 				7C9AACBE26481E4900007E89 /* User.swift */,
 				7C9AACC326482C5300007E89 /* Car.swift */,
+				7C8C80CD26496BF000BE3998 /* RealmImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -156,6 +166,8 @@
 		7CDED4802645F2CC00DDB3BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7C8C80C926487F5A00BE3998 /* Reachability.swift */,
+				7C8C80CF2649865C00BE3998 /* Commons.swift */,
 				7CDED493264601A400DDB3BE /* Constants */,
 				7CDED48A2645FF0700DDB3BE /* Localizable */,
 				7CDED47026457C4C00DDB3BE /* Main.storyboard */,
@@ -373,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C8C80CA26487F5A00BE3998 /* Reachability.swift in Sources */,
 				7CDED46F26457C4C00DDB3BE /* LoginViewController.swift in Sources */,
 				7CDED4922646007F00DDB3BE /* CarListViewController.swift in Sources */,
 				7C9AACC826483E2B00007E89 /* CarDetailsViewController.swift in Sources */,
@@ -382,10 +395,13 @@
 				7CDED48F2645FF3E00DDB3BE /* LocalizedStrings.swift in Sources */,
 				7C9AACBF26481E4900007E89 /* User.swift in Sources */,
 				7C9AACBC2647357000007E89 /* BaseViewController.swift in Sources */,
+				7C8C80CC26495CBE00BE3998 /* DBManager.swift in Sources */,
 				7C9AACC426482C5300007E89 /* Car.swift in Sources */,
+				7C8C80D02649865C00BE3998 /* Commons.swift in Sources */,
 				7CDED46B26457C4C00DDB3BE /* AppDelegate.swift in Sources */,
 				7C9AACC226482B8200007E89 /* CarCell.swift in Sources */,
 				7CDED495264601BB00DDB3BE /* Constants.swift in Sources */,
+				7C8C80CE26496BF000BE3998 /* RealmImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +561,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VELY22CN9P;
 				INFOPLIST_FILE = "Arabami Sat/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -565,6 +582,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VELY22CN9P;
 				INFOPLIST_FILE = "Arabami Sat/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (

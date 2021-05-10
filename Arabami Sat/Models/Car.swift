@@ -7,7 +7,8 @@
 
 import UIKit
 
-struct Car {
+struct Car: Decodable {
+    var imageRealmId: String?
     var manufacturer: String?
     var model: String?
 }

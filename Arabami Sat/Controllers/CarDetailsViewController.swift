@@ -30,10 +30,20 @@ class CarDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.loadImage()
         self.setupLabels()
     }
+    
+    private func loadImage() {
+        guard let imgId = self.car.imageRealmId,
+              let imgData = DBManager.shared.getImageData(id: imgId) else {
+            return
+        }
+        
+        self.carImage.image = UIImage(data: imgData)
+    }
 
-    func setupLabels() {
+    private func setupLabels() {
         self.carManufacturerTitleLbl.text = Strings.Manufacturer
         self.carManufacturerLbl.text = self.car.manufacturer
         self.carModelTitleLbl.text = Strings.Model

@@ -6,6 +6,25 @@
 //
 
 import UIKit
+import RealmSwift
+
+extension Realm {
+    public func safeWrite(_ block: (() throws -> Void)) throws {
+        if self.isInWriteTransaction {
+            try block()
+        } else {
+            try write(block)
+        }
+    }
+    
+    static func get() -> Realm {
+        do {
+            return try self.init()
+        } catch {
+            fatalError()
+        }
+    }
+}
 
 extension UIView {
     @IBInspectable

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '12.1'
+platform :ios, '12.0'
 
 target 'Arabami Sat' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -12,6 +12,8 @@ target 'Arabami Sat' do
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+  pod 'RealmSwift'
   pod 'SwiftLint'
 
 end

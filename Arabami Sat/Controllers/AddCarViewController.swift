@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol AddCarDelegate: AnyObject {
-    func addCar(car: Car)
-}
-
 class AddCarViewController: BaseViewController {
     enum ValidationError {
         case noImageSelected
@@ -24,7 +20,7 @@ class AddCarViewController: BaseViewController {
     @IBOutlet weak var manufacturerTF: UITextField!
     @IBOutlet weak var modelTF: UITextField!
 
-    weak var delegate: AddCarDelegate?
+//    private let reachability = try? Reachability()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,23 +30,58 @@ class AddCarViewController: BaseViewController {
         self.setupButton()
         self.setupTextFields()
         self.registerForNotifications()
+//        self.addReachabilityObservers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.startNotifier()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        self.stopNotifier()
     }
 
-    func setupViews() {
+//    private func addReachabilityObservers() {
+//        self.reachability?.whenReachable = { _ in
+//            print("online")
+//        }
+//
+//        self.reachability?.whenUnreachable = { _ in
+//            print("offline")
+//        }
+//    }
+
+//    // listen for changes in network
+//    private func startNotifier() {
+//        do {
+//            try reachability?.startNotifier(withImmediateCheck: false)
+//        } catch {
+//            return
+//        }
+//    }
+//
+//    // stop listening for changes in network
+//    private func stopNotifier() {
+//        self.reachability?.stopNotifier()
+//    }
+
+    private func setupViews() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         self.view.addGestureRecognizer(tap)
     }
 
-    func setupButton() {
+    private func setupButton() {
         self.openGalleryBtn.setTitle(Strings.SelectImage, for: .normal)
     }
 
-    func setupTextFields() {
+    private func setupTextFields() {
         self.manufacturerTF.placeholder = Strings.Manufacturer
         self.modelTF.placeholder = Strings.Model
     }
 
-    func registerForNotifications() {
+    private func registerForNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(_:)),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -61,7 +92,7 @@ class AddCarViewController: BaseViewController {
                                                object: nil)
     }
 
-    func validateCar() -> ValidationError? {
+    private func validateCar() -> ValidationError? {
         guard self.carImageView.image != nil else {
             return .noImageSelected
         }
@@ -80,7 +111,7 @@ class AddCarViewController: BaseViewController {
     }
 
     // MARK: Notifications methods
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc private func keyboardWillShow(_ notification: Notification) {
         guard let info = (notification as NSNotification).userInfo,
             let val = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             return
@@ -108,7 +139,7 @@ class AddCarViewController: BaseViewController {
         }
     }
 
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func keyboardWillHide(_ notification: Notification) {
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
@@ -118,7 +149,7 @@ class AddCarViewController: BaseViewController {
         }
     }
 
-    @objc func hideKeyboard(sender: UITapGestureRecognizer) {
+    @objc private func hideKeyboard(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
 
@@ -127,9 +158,6 @@ class AddCarViewController: BaseViewController {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .photoLibrary
-        if let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) {
-            picker.mediaTypes = mediaTypes
-        }
 
         self.present(picker, animated: true)
     }
@@ -137,13 +165,23 @@ class AddCarViewController: BaseViewController {
     @IBAction func saveCar(_ sender: Any) {
         guard let error = self.validateCar() else {
             let manufacturer = self.manufacturerTF.text
-            let model = self.manufacturerTF.text
-
-            self.showAlert(with: Strings.Success, message: Strings.CarAdded) { _ in
-                self.navigationController?.popViewController(animated: true)
-                let newCar = Car(manufacturer: manufacturer, model: model)
-                self.delegate?.addCar(car: newCar)
+            let model = self.modelTF.text
+            let id = UUID().uuidString
+            let newCar = Car(imageRealmId: id, manufacturer: manufacturer, model: model)
+            
+            if let imageData = self.carImageView.image?.jpegData(compressionQuality: AppConstants.imageCompression) {
+                DBManager.shared.saveImageToRealm(with: imageData, id: id)
             }
+
+            DBManager.shared.addNewCar(car: newCar) { error in
+                guard let err = error else {
+                    return
+                }
+
+                self.showAlert(with: Strings.Error, message: err.localizedDescription)
+            }
+            
+            self.navigationController?.popViewController(animated: true)
 
             return
         }
