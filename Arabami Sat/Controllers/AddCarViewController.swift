@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
 
 class AddCarViewController: BaseViewController {
     enum ValidationError {
@@ -30,6 +31,10 @@ class AddCarViewController: BaseViewController {
         self.setupButton()
         self.setupTextFields()
         self.registerForNotifications()
+        
+        Crashlytics.crashlytics().setCustomValue("will add new car", forKey: "addCar")
+        Crashlytics.crashlytics().log("custom message")
+
 //        self.addReachabilityObservers()
     }
     
