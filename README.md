@@ -39,4 +39,7 @@ Struct with localized strings could be found in `LocalizedStrings.swift` file.
 Constains logic for authenticating the user with Facebook and Google. (Firebase OAuth)
 
 ## DBManager.swift
-Contains logic for writing and reading from local Realm database for images and for writing and reading the FirestoreDB.
+Contains logic for writing and reading from local Realm database for images and for writing and reading the FirestoreDB. Also it is responsible for uploading/downloading images from storage.
+
+## Unit testing
+The AuthenticationManager is fully tested using mocks. Same approach should be used for other managers (which are testable).

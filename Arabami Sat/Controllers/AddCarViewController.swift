@@ -20,6 +20,7 @@ class AddCarViewController: BaseViewController {
     @IBOutlet weak var openGalleryBtn: UIButton!
     @IBOutlet weak var manufacturerTF: UITextField!
     @IBOutlet weak var modelTF: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
 //    private let reachability = try? Reachability()
 
@@ -37,12 +38,12 @@ class AddCarViewController: BaseViewController {
 
 //        self.addReachabilityObservers()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        self.startNotifier()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 //        self.stopNotifier()
@@ -169,28 +170,32 @@ class AddCarViewController: BaseViewController {
 
     @IBAction func saveCar(_ sender: Any) {
         guard let error = self.validateCar() else {
-            let manufacturer = self.manufacturerTF.text
-            let model = self.modelTF.text
-            let id = UUID().uuidString
-            
             guard let image = self.carImageView.image,
                   let imageData = image.jpegData(compressionQuality: AppConstants.imageCompression) else {
                 self.showAlert(with: Strings.Error, message: Strings.NoImageSelected)
                 return
             }
-            
-            let newCar = Car(imageRealmId: id, manufacturer: manufacturer, model: model)
-            DBManager.shared.saveImageToRealm(with: imageData, id: id)
-            DBManager.shared.addNewCar(car: newCar) { error in
-                guard let err = error else {
-                    DBManager.shared.nsCache.setObject(image, forKey: id as NSString)
-                    return
-                }
 
-                self.showAlert(with: Strings.Error, message: err.localizedDescription)
+            let id = UUID().uuidString
+            if Commons.isConnectedToNetwork() {
+                self.activityIndicator.startAnimating()
+                // Uploading the image to storage
+                DBManager.shared.startUpload(imageId: id, imageData: imageData) { [weak self] urlStr, error in
+                    self?.activityIndicator.stopAnimating()
+
+                    if let error = error {
+                        self?.showAlert(with: Strings.Error, message: error.localizedDescription)
+                        return
+                    }
+
+                    self?.addNewCar(with: id, urlString: urlStr!)
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            } else {
+                // Saving the image in Realm when offline
+                DBManager.shared.saveImageToRealm(with: imageData, id: id)
+                self.navigationController?.popViewController(animated: true)
             }
-            
-            self.navigationController?.popViewController(animated: true)
 
             return
         }
@@ -202,6 +207,19 @@ class AddCarViewController: BaseViewController {
             self.showAlert(with: Strings.Error, message: Strings.NoManufacturer)
         case .noModel:
             self.showAlert(with: Strings.Error, message: Strings.NoModel)
+        }
+    }
+
+    private func addNewCar(with id: String, urlString: String) {
+        let manufacturer = self.manufacturerTF.text
+        let model = self.modelTF.text
+        let newCar = Car(imageURL: urlString, imageRealmId: id, manufacturer: manufacturer, model: model)
+        DBManager.shared.addNewCar(car: newCar) { error in
+            guard let err = error else {
+                return
+            }
+
+            self.showAlert(with: Strings.Error, message: err.localizedDescription)
         }
     }
 }

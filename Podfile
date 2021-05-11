@@ -13,6 +13,8 @@ target 'Arabami Sat' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Storage'
+  pod 'SDWebImage'
   pod 'RealmSwift'
   pod 'SwiftLint'
   

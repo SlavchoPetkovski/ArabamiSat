@@ -13,7 +13,8 @@
 		7C8C80CE26496BF000BE3998 /* RealmImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80CD26496BF000BE3998 /* RealmImage.swift */; };
 		7C8C80D02649865C00BE3998 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80CF2649865C00BE3998 /* Commons.swift */; };
 		7C8C80D8264A9EF000BE3998 /* Arabami_SatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80D7264A9EF000BE3998 /* Arabami_SatTests.swift */; };
-		7C8C80E5264AA50700BE3998 /* LoginManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80DF264A9F1300BE3998 /* LoginManagerMock.swift */; };
+		7C8C80EC264AC14E00BE3998 /* FBLoginManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80DF264A9F1300BE3998 /* FBLoginManagerMock.swift */; };
+		7C8C80ED264AC19B00BE3998 /* GoogleLoginDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80E6264AADBE00BE3998 /* GoogleLoginDelegateMock.swift */; };
 		7C9AACB5264726BA00007E89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C9AACB4264726BA00007E89 /* GoogleService-Info.plist */; };
 		7C9AACB926472C1300007E89 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACB826472C1300007E89 /* AuthenticationManager.swift */; };
 		7C9AACBC2647357000007E89 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACBB2647357000007E89 /* BaseViewController.swift */; };
@@ -33,7 +34,7 @@
 		7CDED4922646007F00DDB3BE /* CarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDED4912646007F00DDB3BE /* CarListViewController.swift */; };
 		7CDED495264601BB00DDB3BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDED494264601BB00DDB3BE /* Constants.swift */; };
 		B608AC745B2E651C1B8D3C2B /* Pods_Arabami_SatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CAC0787A5BB2CE9B2FE8B8 /* Pods_Arabami_SatTests.framework */; };
-		C562C9B13C6D1D9AA8EA6012 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		C562C9B13C6D1D9AA8EA6012 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +59,8 @@
 		7C8C80D5264A9EF000BE3998 /* Arabami SatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Arabami SatTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C8C80D7264A9EF000BE3998 /* Arabami_SatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arabami_SatTests.swift; sourceTree = "<group>"; };
 		7C8C80D9264A9EF000BE3998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C8C80DF264A9F1300BE3998 /* LoginManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManagerMock.swift; sourceTree = "<group>"; };
+		7C8C80DF264A9F1300BE3998 /* FBLoginManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLoginManagerMock.swift; sourceTree = "<group>"; };
+		7C8C80E6264AADBE00BE3998 /* GoogleLoginDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginDelegateMock.swift; sourceTree = "<group>"; };
 		7C9AACB4264726BA00007E89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C9AACB826472C1300007E89 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		7C9AACBB2647357000007E89 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C562C9B13C6D1D9AA8EA6012 /* BuildFile in Frameworks */,
+				C562C9B13C6D1D9AA8EA6012 /* (null) in Frameworks */,
 				5972ECEFBD7CA627199B0C00 /* Pods_Arabami_Sat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,16 +125,25 @@
 		7C8C80D6264A9EF000BE3998 /* Arabami SatTests */ = {
 			isa = PBXGroup;
 			children = (
+				7C8C80E8264AAF0B00BE3998 /* AuthMocks */,
 				7C8C80D7264A9EF000BE3998 /* Arabami_SatTests.swift */,
 				7C8C80D9264A9EF000BE3998 /* Info.plist */,
 			);
 			path = "Arabami SatTests";
 			sourceTree = "<group>";
 		};
+		7C8C80E8264AAF0B00BE3998 /* AuthMocks */ = {
+			isa = PBXGroup;
+			children = (
+				7C8C80E6264AADBE00BE3998 /* GoogleLoginDelegateMock.swift */,
+				7C8C80DF264A9F1300BE3998 /* FBLoginManagerMock.swift */,
+			);
+			path = AuthMocks;
+			sourceTree = "<group>";
+		};
 		7C9AACB726472BF400007E89 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				7C8C80DF264A9F1300BE3998 /* LoginManagerMock.swift */,
 				7C9AACB826472C1300007E89 /* AuthenticationManager.swift */,
 				7C8C80CB26495CBE00BE3998 /* DBManager.swift */,
 			);
@@ -506,6 +517,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C8C80D8264A9EF000BE3998 /* Arabami_SatTests.swift in Sources */,
+				7C8C80EC264AC14E00BE3998 /* FBLoginManagerMock.swift in Sources */,
+				7C8C80ED264AC19B00BE3998 /* GoogleLoginDelegateMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +535,6 @@
 				7CDED4832645F56B00DDB3BE /* Extensions.swift in Sources */,
 				7CDED48F2645FF3E00DDB3BE /* LocalizedStrings.swift in Sources */,
 				7C9AACBF26481E4900007E89 /* User.swift in Sources */,
-				7C8C80E5264AA50700BE3998 /* LoginManagerMock.swift in Sources */,
 				7C9AACBC2647357000007E89 /* BaseViewController.swift in Sources */,
 				7C8C80CC26495CBE00BE3998 /* DBManager.swift in Sources */,
 				7C9AACC426482C5300007E89 /* Car.swift in Sources */,

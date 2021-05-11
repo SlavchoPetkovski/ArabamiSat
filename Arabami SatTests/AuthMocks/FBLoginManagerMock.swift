@@ -7,7 +7,7 @@
 
 import FBSDKLoginKit
 
-class LoginManagerMock: LoginManager {
+class FBLoginManagerMock: LoginManager {
     let result: LoginManagerLoginResult?
     let error: NSError?
     

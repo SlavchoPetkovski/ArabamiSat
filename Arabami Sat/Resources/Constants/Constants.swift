@@ -22,6 +22,7 @@ struct CellConstants {
 
 struct FirebaseConstants {
     static let carsCollection = "cars"
+    static let imageURL = "imageURL"
     static let imageRealmId = "imageRealmId"
     static let manufacturerKey = "manufacturer"
     static let modelKey = "model"
@@ -29,4 +30,6 @@ struct FirebaseConstants {
 
 struct NotificationNames {
     static let refreshUInotification = NSNotification.Name("Notification.refreshUInotification")
+    static let uploadFailedNotification = NSNotification.Name("Notification.uploadFailedNotification")
+    static let uploadSucceededNotification = NSNotification.Name("Notification.uploadSucceededNotification")
 }

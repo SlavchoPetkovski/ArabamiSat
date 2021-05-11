@@ -27,13 +27,17 @@ class AuthenticationManager: NSObject {
     private var type: AuthType?
     private var viewController: UIViewController?
     
-    let loginManager: LoginManager
+    let fbLoginManager: LoginManager
+    let googleLoginManager: GIDSignIn
+    weak var delegate: GIDSignInDelegate?
     var loginResult: LoginResult = .none
 
-    init(type: AuthType, viewController: UIViewController, loginManager: LoginManager = LoginManager()) {
+    init(type: AuthType, viewController: UIViewController, fbLoginManager: LoginManager = LoginManager(), googleLoginManager: GIDSignIn = GIDSignIn.sharedInstance(), delegate: GIDSignInDelegate? = nil) {
         self.type = type
         self.viewController = viewController
-        self.loginManager = loginManager
+        self.fbLoginManager = fbLoginManager
+        self.googleLoginManager = googleLoginManager
+        self.delegate = delegate
         super.init()
     }
 
@@ -63,7 +67,7 @@ class AuthenticationManager: NSObject {
     }
 
     private func signInWithFacebook() {
-        self.loginManager.logIn(permissions: ["email", "public_profile"], from: self.viewController) { (result, error) in
+        self.fbLoginManager.logIn(permissions: ["email", "public_profile"], from: self.viewController) { (result, error) in
             // Check for error
             guard error == nil else {
                 // Error occurred
@@ -89,14 +93,14 @@ class AuthenticationManager: NSObject {
     }
 
     private func signInWithGoogle() {
-        GIDSignIn.sharedInstance().clientID = AppConstants.googleClientID
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().presentingViewController = self.viewController
+        self.googleLoginManager.clientID = AppConstants.googleClientID
+        self.googleLoginManager.delegate = self.delegate
+        self.googleLoginManager.presentingViewController = self.viewController
 
-        if GIDSignIn.sharedInstance().hasPreviousSignIn() {
-            GIDSignIn.sharedInstance().restorePreviousSignIn()
+        if self.googleLoginManager.hasPreviousSignIn() {
+            self.googleLoginManager.restorePreviousSignIn()
         } else {
-            GIDSignIn.sharedInstance().signIn()
+            self.googleLoginManager.signIn()
         }
     }
 }
@@ -104,12 +108,10 @@ class AuthenticationManager: NSObject {
 extension AuthenticationManager: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            self.loginResult = .error
             self.handler?(nil, error)
             return
         }
 
-        self.loginResult = .success
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)

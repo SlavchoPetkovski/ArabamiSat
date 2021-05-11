@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CarCell: UITableViewCell {
 
@@ -24,10 +25,11 @@ class CarCell: UITableViewCell {
     }
     
     func setup(car: Car) {
-        if let imgId = car.imageRealmId {
-            if let image = DBManager.shared.nsCache.object(forKey: imgId as NSString) {
-                self.carImage.image = image
-            } else if let imageData = DBManager.shared.getImageData(id: imgId) {
+        if let imageURL = car.imageURL {
+            self.carImage.sd_setImage(with: URL(string: imageURL), placeholderImage: nil, options: .highPriority, context: nil)
+        } else {
+            if let imgId = car.imageRealmId,
+               let imageData = DBManager.shared.getImageData(id: imgId) {
                 self.carImage.image = UIImage(data: imageData)
             }
         }

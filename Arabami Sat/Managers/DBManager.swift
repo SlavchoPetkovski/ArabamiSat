@@ -5,6 +5,7 @@
 //  Created by Slavcho Petkovski on 10.5.21.
 //
 
+import FirebaseStorage
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import RealmSwift
@@ -28,11 +29,12 @@ class DBManager: NSObject {
     }
 
     var listener: ListenerRegistration?
-    var nsCache = NSCache<NSString, UIImage>()
+    var taskRef: StorageUploadTask?
 
     func addNewCar(car: Car, completion: @escaping (Error?) -> Void) {
         // Also we can use .addDocument(from:) where the imput param (in our case Car) conforms to Encodable
         _ = self.db.collection(FirebaseConstants.carsCollection).addDocument(data: [
+            FirebaseConstants.imageURL: car.imageURL ?? "",
             FirebaseConstants.imageRealmId: car.imageRealmId ?? "",
             FirebaseConstants.manufacturerKey: car.manufacturer ?? "",
             FirebaseConstants.modelKey: car.model ?? ""
@@ -40,7 +42,35 @@ class DBManager: NSObject {
             completion(err)
         }
     }
-    
+
+    func startUpload(imageId: String, imageData: Data, completion: @escaping (String?, Error?) -> Void) {
+        let uploadRef = Storage.storage().reference(withPath: "cars/\(imageId)")
+        let uploadMetadata = StorageMetadata()
+        uploadMetadata.contentType = "image/jpeg"
+
+        self.taskRef = uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+            if let error = error {
+                print("Upload error: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+
+            print("Upload success: \(String(describing: downloadMetadata))")
+
+            uploadRef.downloadURL { (url, error) in
+                if let error = error {
+                    print("Error generating URL: \(error.localizedDescription)")
+                    completion(nil, error)
+                    return
+                }
+
+                if let url = url {
+                    completion(url.absoluteString, nil)
+                }
+            }
+        }
+    }
+
     func saveImageToRealm(with data: Data, id: String) {
         DispatchQueue.main.async {
             let realm = self.getRealm()

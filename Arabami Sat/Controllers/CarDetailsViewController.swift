@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CarDetailsViewController: UIViewController {
 
@@ -33,26 +34,14 @@ class CarDetailsViewController: UIViewController {
         self.loadImage()
         self.setupLabels()
     }
-    
+
     private func loadImage() {
-//        guard let imgId = self.car.imageRealmId,
-//              let imgData = DBManager.shared.getImageData(id: imgId) else {
-//            return
-//        }
-        
-        guard let imgId = self.car.imageRealmId else {
-            return
+        if let imageURL = self.car.imageURL {
+            self.carImage.sd_setImage(with: URL(string: imageURL), completed: nil)
+        } else if let imgId = self.car.imageRealmId,
+                  let localImageData = DBManager.shared.getImageData(id: imgId) {
+            self.carImage.image = UIImage(data: localImageData)
         }
-        
-        guard let image = DBManager.shared.nsCache.object(forKey: imgId as NSString) else {
-            if let imgData = DBManager.shared.getImageData(id: imgId) {
-                self.carImage.image = UIImage(data: imgData)
-            }
-            
-            return
-        }
-        
-        self.carImage.image = image // UIImage(data: imgData)
     }
 
     private func setupLabels() {
