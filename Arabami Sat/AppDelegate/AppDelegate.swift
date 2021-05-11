@@ -46,9 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url)
     }
-    
+
     func realmMigrate() {
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: { (_, oldSchemaVersion) in
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1,
+                                                                       migrationBlock: { (_, oldSchemaVersion) in
             if oldSchemaVersion < 1 {
             }
         })

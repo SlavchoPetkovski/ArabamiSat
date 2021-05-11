@@ -13,7 +13,7 @@ struct AppConstants {
     static let detailsSegue = "detailsSegue"
     static let addCarSegue = "addCarSegue"
     static let googleClientID = "485457355655-m6vvhc9088k7j5kh8tn25ha1tiqfrr45.apps.googleusercontent.com"
-    static let imageCompression: CGFloat = 0.5
+    static let imageCompression: CGFloat = 0.3
 }
 
 struct CellConstants {

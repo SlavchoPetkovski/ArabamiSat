@@ -17,14 +17,14 @@ class GoogleLoginDelegateMock: NSObject, GIDSignInDelegate {
         self.error = error
     }
     var hasError = false
-    
+
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if self.error != nil {
             self.hasError = true
             self.expectation.fulfill()
             return
         }
-        
+
         self.hasError = false
         self.expectation.fulfill()
     }

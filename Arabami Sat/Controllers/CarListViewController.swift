@@ -17,6 +17,7 @@ class CarListViewController: UIViewController {
 
     private var cars = [Car]()
     private var carsChangedNotification: NSObjectProtocol?
+    let reachability = try? Reachability()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,30 +26,65 @@ class CarListViewController: UIViewController {
         self.setupNotifications()
         DBManager.shared.addListener()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)),
+                                               name: .reachabilityChanged, object: self.reachability)
+
+        do {
+            try self.reachability?.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.reachability?.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: self.reachability)
+    }
+
     deinit {
         DBManager.shared.removeListener()
         NotificationCenter.default.removeObserver(self.carsChangedNotification as Any)
     }
-    
+
     private func setupNavigationBar() {
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.title = User.shared.username ?? Strings.UnknownUser
     }
-    
+
     private func setupNotifications() {
-        self.carsChangedNotification = NotificationCenter.default.addObserver(forName: NotificationNames.refreshUInotification, object: nil, queue: .main) { [weak self] notification in
+        self.carsChangedNotification = NotificationCenter.default.addObserver(
+            forName: NotificationNames.refreshUInotification,
+            object: nil, queue: .main) { [weak self] notification in
             guard let strongSelf = self else {
                 return
             }
-            
+
             guard let cars = notification.object as? [Car] else {
                 return
             }
-            
+
             strongSelf.cars = cars
             strongSelf.tableView.reloadData()
+        }
+    }
+
+    // MARK: - Notifications
+    @objc func reachabilityChanged(note: Notification) {
+        guard let reachability = note.object as? Reachability else {
+            return
+        }
+
+        switch reachability.connection {
+        case .wifi, .cellular:
+            DBManager.shared.syncIfNeeded()
+        case .unavailable:
+            break
         }
     }
 

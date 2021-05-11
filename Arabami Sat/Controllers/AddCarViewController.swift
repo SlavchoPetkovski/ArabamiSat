@@ -22,8 +22,6 @@ class AddCarViewController: BaseViewController {
     @IBOutlet weak var modelTF: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-//    private let reachability = try? Reachability()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,46 +30,10 @@ class AddCarViewController: BaseViewController {
         self.setupButton()
         self.setupTextFields()
         self.registerForNotifications()
-        
+
         Crashlytics.crashlytics().setCustomValue("will add new car", forKey: "addCar")
         Crashlytics.crashlytics().log("custom message")
-
-//        self.addReachabilityObservers()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        self.startNotifier()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        self.stopNotifier()
-    }
-
-//    private func addReachabilityObservers() {
-//        self.reachability?.whenReachable = { _ in
-//            print("online")
-//        }
-//
-//        self.reachability?.whenUnreachable = { _ in
-//            print("offline")
-//        }
-//    }
-
-//    // listen for changes in network
-//    private func startNotifier() {
-//        do {
-//            try reachability?.startNotifier(withImmediateCheck: false)
-//        } catch {
-//            return
-//        }
-//    }
-//
-//    // stop listening for changes in network
-//    private func stopNotifier() {
-//        self.reachability?.stopNotifier()
-//    }
 
     private func setupViews() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
@@ -161,11 +123,13 @@ class AddCarViewController: BaseViewController {
 
     // IBActions
     @IBAction func pickImageFromGallery(_ sender: UIButton) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
+        DispatchQueue.main.async {
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .photoLibrary
 
-        self.present(picker, animated: true)
+            self.present(picker, animated: true)
+        }
     }
 
     @IBAction func saveCar(_ sender: Any) {
@@ -194,6 +158,7 @@ class AddCarViewController: BaseViewController {
             } else {
                 // Saving the image in Realm when offline
                 DBManager.shared.saveImageToRealm(with: imageData, id: id)
+                self.addNewCar(with: id)
                 self.navigationController?.popViewController(animated: true)
             }
 
@@ -210,16 +175,20 @@ class AddCarViewController: BaseViewController {
         }
     }
 
-    private func addNewCar(with id: String, urlString: String) {
+    private func addNewCar(with id: String, urlString: String? = nil) {
         let manufacturer = self.manufacturerTF.text
         let model = self.modelTF.text
         let newCar = Car(imageURL: urlString, imageRealmId: id, manufacturer: manufacturer, model: model)
-        DBManager.shared.addNewCar(car: newCar) { error in
+        DBManager.shared.addNewCar(car: newCar) { [weak self] docId, error in
             guard let err = error else {
+                if urlString == nil, let docId = docId {
+                    DBManager.shared.updateRealmImage(with: docId, id: id)
+                }
+
                 return
             }
 
-            self.showAlert(with: Strings.Error, message: err.localizedDescription)
+            self?.showAlert(with: Strings.Error, message: err.localizedDescription)
         }
     }
 }

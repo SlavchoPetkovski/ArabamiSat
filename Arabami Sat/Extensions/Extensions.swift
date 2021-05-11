@@ -16,7 +16,7 @@ extension Realm {
             try write(block)
         }
     }
-    
+
     static func get() -> Realm {
         do {
             return try self.init()

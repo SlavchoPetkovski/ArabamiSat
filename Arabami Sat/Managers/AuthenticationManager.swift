@@ -26,13 +26,16 @@ class AuthenticationManager: NSObject {
     var handler: ((AuthDataResult?, Error?) -> Void)?
     private var type: AuthType?
     private var viewController: UIViewController?
-    
+
     let fbLoginManager: LoginManager
     let googleLoginManager: GIDSignIn
     weak var delegate: GIDSignInDelegate?
     var loginResult: LoginResult = .none
 
-    init(type: AuthType, viewController: UIViewController, fbLoginManager: LoginManager = LoginManager(), googleLoginManager: GIDSignIn = GIDSignIn.sharedInstance(), delegate: GIDSignInDelegate? = nil) {
+    init(type: AuthType, viewController: UIViewController,
+         fbLoginManager: LoginManager = LoginManager(),
+         googleLoginManager: GIDSignIn = GIDSignIn.sharedInstance(),
+         delegate: GIDSignInDelegate? = nil) {
         self.type = type
         self.viewController = viewController
         self.fbLoginManager = fbLoginManager
@@ -67,7 +70,7 @@ class AuthenticationManager: NSObject {
     }
 
     private func signInWithFacebook() {
-        self.fbLoginManager.logIn(permissions: ["email", "public_profile"], from: self.viewController) { (result, error) in
+        self.fbLoginManager.logIn(permissions: ["email"], from: self.viewController) { (result, error) in
             // Check for error
             guard error == nil else {
                 // Error occurred

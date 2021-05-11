@@ -36,7 +36,7 @@ class CarDetailsViewController: UIViewController {
     }
 
     private func loadImage() {
-        if let imageURL = self.car.imageURL {
+        if let imageURL = self.car.imageURL, !imageURL.isEmpty {
             self.carImage.sd_setImage(with: URL(string: imageURL), completed: nil)
         } else if let imgId = self.car.imageRealmId,
                   let localImageData = DBManager.shared.getImageData(id: imgId) {
