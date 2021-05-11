@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5972ECEFBD7CA627199B0C00 /* Pods_Arabami_Sat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD647C7544E1593E97C7EAF /* Pods_Arabami_Sat.framework */; };
 		7C8C80CA26487F5A00BE3998 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80C926487F5A00BE3998 /* Reachability.swift */; };
 		7C8C80CC26495CBE00BE3998 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80CB26495CBE00BE3998 /* DBManager.swift */; };
 		7C8C80CE26496BF000BE3998 /* RealmImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80CD26496BF000BE3998 /* RealmImage.swift */; };
 		7C8C80D02649865C00BE3998 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80CF2649865C00BE3998 /* Commons.swift */; };
+		7C8C80D8264A9EF000BE3998 /* Arabami_SatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80D7264A9EF000BE3998 /* Arabami_SatTests.swift */; };
+		7C8C80E5264AA50700BE3998 /* LoginManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8C80DF264A9F1300BE3998 /* LoginManagerMock.swift */; };
 		7C9AACB5264726BA00007E89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C9AACB4264726BA00007E89 /* GoogleService-Info.plist */; };
 		7C9AACB926472C1300007E89 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACB826472C1300007E89 /* AuthenticationManager.swift */; };
 		7C9AACBC2647357000007E89 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9AACBB2647357000007E89 /* BaseViewController.swift */; };
@@ -29,15 +32,33 @@
 		7CDED48F2645FF3E00DDB3BE /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDED48E2645FF3E00DDB3BE /* LocalizedStrings.swift */; };
 		7CDED4922646007F00DDB3BE /* CarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDED4912646007F00DDB3BE /* CarListViewController.swift */; };
 		7CDED495264601BB00DDB3BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDED494264601BB00DDB3BE /* Constants.swift */; };
-		C562C9B13C6D1D9AA8EA6012 /* Pods_Arabami_Sat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CC220D91B510A3B71D7C82 /* Pods_Arabami_Sat.framework */; };
+		B608AC745B2E651C1B8D3C2B /* Pods_Arabami_SatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CAC0787A5BB2CE9B2FE8B8 /* Pods_Arabami_SatTests.framework */; };
+		C562C9B13C6D1D9AA8EA6012 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7C8C80DA264A9EF000BE3998 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CDED45F26457C4C00DDB3BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7CDED46626457C4C00DDB3BE;
+			remoteInfo = "Arabami Sat";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1216CFA6BE6CDD4785948E2E /* Pods-Arabami Sat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arabami Sat.debug.xcconfig"; path = "Target Support Files/Pods-Arabami Sat/Pods-Arabami Sat.debug.xcconfig"; sourceTree = "<group>"; };
+		46E49B2B8A8380B3A7994A12 /* Pods-Arabami Sat-Arabami SatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arabami Sat-Arabami SatTests.release.xcconfig"; path = "Target Support Files/Pods-Arabami Sat-Arabami SatTests/Pods-Arabami Sat-Arabami SatTests.release.xcconfig"; sourceTree = "<group>"; };
+		5F980407CBC8DA433094F426 /* Pods-Arabami Sat-Arabami SatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arabami Sat-Arabami SatTests.debug.xcconfig"; path = "Target Support Files/Pods-Arabami Sat-Arabami SatTests/Pods-Arabami Sat-Arabami SatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		776334A61486A518D86C747E /* Pods-Arabami SatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arabami SatTests.release.xcconfig"; path = "Target Support Files/Pods-Arabami SatTests/Pods-Arabami SatTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C8C80C926487F5A00BE3998 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7C8C80CB26495CBE00BE3998 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		7C8C80CD26496BF000BE3998 /* RealmImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmImage.swift; sourceTree = "<group>"; };
 		7C8C80CF2649865C00BE3998 /* Commons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
+		7C8C80D5264A9EF000BE3998 /* Arabami SatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Arabami SatTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C8C80D7264A9EF000BE3998 /* Arabami_SatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arabami_SatTests.swift; sourceTree = "<group>"; };
+		7C8C80D9264A9EF000BE3998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C8C80DF264A9F1300BE3998 /* LoginManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManagerMock.swift; sourceTree = "<group>"; };
 		7C9AACB4264726BA00007E89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C9AACB826472C1300007E89 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		7C9AACBB2647357000007E89 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -59,16 +80,27 @@
 		7CDED4902645FF6D00DDB3BE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7CDED4912646007F00DDB3BE /* CarListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarListViewController.swift; sourceTree = "<group>"; };
 		7CDED494264601BB00DDB3BE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		A3CC220D91B510A3B71D7C82 /* Pods_Arabami_Sat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arabami_Sat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DECFE58E28A450662240448 /* Pods-Arabami SatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arabami SatTests.debug.xcconfig"; path = "Target Support Files/Pods-Arabami SatTests/Pods-Arabami SatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B6CAC0787A5BB2CE9B2FE8B8 /* Pods_Arabami_SatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arabami_SatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA45C8A10F493664DFFE7D8 /* Pods-Arabami Sat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arabami Sat.release.xcconfig"; path = "Target Support Files/Pods-Arabami Sat/Pods-Arabami Sat.release.xcconfig"; sourceTree = "<group>"; };
+		CDD647C7544E1593E97C7EAF /* Pods_Arabami_Sat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arabami_Sat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7C8C80D2264A9EF000BE3998 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B608AC745B2E651C1B8D3C2B /* Pods_Arabami_SatTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7CDED46426457C4C00DDB3BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C562C9B13C6D1D9AA8EA6012 /* Pods_Arabami_Sat.framework in Frameworks */,
+				C562C9B13C6D1D9AA8EA6012 /* BuildFile in Frameworks */,
+				5972ECEFBD7CA627199B0C00 /* Pods_Arabami_Sat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,13 +112,27 @@
 			children = (
 				1216CFA6BE6CDD4785948E2E /* Pods-Arabami Sat.debug.xcconfig */,
 				CDA45C8A10F493664DFFE7D8 /* Pods-Arabami Sat.release.xcconfig */,
+				5F980407CBC8DA433094F426 /* Pods-Arabami Sat-Arabami SatTests.debug.xcconfig */,
+				46E49B2B8A8380B3A7994A12 /* Pods-Arabami Sat-Arabami SatTests.release.xcconfig */,
+				7DECFE58E28A450662240448 /* Pods-Arabami SatTests.debug.xcconfig */,
+				776334A61486A518D86C747E /* Pods-Arabami SatTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		7C8C80D6264A9EF000BE3998 /* Arabami SatTests */ = {
+			isa = PBXGroup;
+			children = (
+				7C8C80D7264A9EF000BE3998 /* Arabami_SatTests.swift */,
+				7C8C80D9264A9EF000BE3998 /* Info.plist */,
+			);
+			path = "Arabami SatTests";
 			sourceTree = "<group>";
 		};
 		7C9AACB726472BF400007E89 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7C8C80DF264A9F1300BE3998 /* LoginManagerMock.swift */,
 				7C9AACB826472C1300007E89 /* AuthenticationManager.swift */,
 				7C8C80CB26495CBE00BE3998 /* DBManager.swift */,
 			);
@@ -115,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				7CDED46926457C4C00DDB3BE /* Arabami Sat */,
+				7C8C80D6264A9EF000BE3998 /* Arabami SatTests */,
 				7CDED46826457C4C00DDB3BE /* Products */,
 				289C3BBE492DCA08CBBB99EB /* Pods */,
 				BEB1A2B20CC674D366967AFC /* Frameworks */,
@@ -125,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				7CDED46726457C4C00DDB3BE /* Arabami Sat.app */,
+				7C8C80D5264A9EF000BE3998 /* Arabami SatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,7 +255,8 @@
 		BEB1A2B20CC674D366967AFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A3CC220D91B510A3B71D7C82 /* Pods_Arabami_Sat.framework */,
+				CDD647C7544E1593E97C7EAF /* Pods_Arabami_Sat.framework */,
+				B6CAC0787A5BB2CE9B2FE8B8 /* Pods_Arabami_SatTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -215,6 +264,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7C8C80D4264A9EF000BE3998 /* Arabami SatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C8C80DE264A9EF000BE3998 /* Build configuration list for PBXNativeTarget "Arabami SatTests" */;
+			buildPhases = (
+				0D24A8C9EC3B6D802E7669EF /* [CP] Check Pods Manifest.lock */,
+				7C8C80D1264A9EF000BE3998 /* Sources */,
+				7C8C80D2264A9EF000BE3998 /* Frameworks */,
+				7C8C80D3264A9EF000BE3998 /* Resources */,
+				0D3EA7E634EB3B5E6355E004 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7C8C80DB264A9EF000BE3998 /* PBXTargetDependency */,
+			);
+			name = "Arabami SatTests";
+			productName = "Arabami SatTests";
+			productReference = 7C8C80D5264A9EF000BE3998 /* Arabami SatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7CDED46626457C4C00DDB3BE /* Arabami Sat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7CDED47B26457C4E00DDB3BE /* Build configuration list for PBXNativeTarget "Arabami Sat" */;
@@ -246,6 +315,10 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					7C8C80D4264A9EF000BE3998 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 7CDED46626457C4C00DDB3BE;
+					};
 					7CDED46626457C4C00DDB3BE = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -266,11 +339,19 @@
 			projectRoot = "";
 			targets = (
 				7CDED46626457C4C00DDB3BE /* Arabami Sat */,
+				7C8C80D4264A9EF000BE3998 /* Arabami SatTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7C8C80D3264A9EF000BE3998 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7CDED46526457C4C00DDB3BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -286,6 +367,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0D24A8C9EC3B6D802E7669EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Arabami SatTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0D3EA7E634EB3B5E6355E004 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Arabami SatTests/Pods-Arabami SatTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Arabami SatTests/Pods-Arabami SatTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Arabami SatTests/Pods-Arabami SatTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7C5E34EB4FCB4B1A1A7DDDE0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,6 +501,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7C8C80D1264A9EF000BE3998 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C8C80D8264A9EF000BE3998 /* Arabami_SatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7CDED46326457C4C00DDB3BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,6 +522,7 @@
 				7CDED4832645F56B00DDB3BE /* Extensions.swift in Sources */,
 				7CDED48F2645FF3E00DDB3BE /* LocalizedStrings.swift in Sources */,
 				7C9AACBF26481E4900007E89 /* User.swift in Sources */,
+				7C8C80E5264AA50700BE3998 /* LoginManagerMock.swift in Sources */,
 				7C9AACBC2647357000007E89 /* BaseViewController.swift in Sources */,
 				7C8C80CC26495CBE00BE3998 /* DBManager.swift in Sources */,
 				7C9AACC426482C5300007E89 /* Car.swift in Sources */,
@@ -406,6 +535,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7C8C80DB264A9EF000BE3998 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7CDED46626457C4C00DDB3BE /* Arabami Sat */;
+			targetProxy = 7C8C80DA264A9EF000BE3998 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7CDED47026457C4C00DDB3BE /* Main.storyboard */ = {
@@ -436,6 +573,59 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7C8C80DC264A9EF000BE3998 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DECFE58E28A450662240448 /* Pods-Arabami SatTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = VELY22CN9P;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Pods",
+					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
+				);
+				INFOPLIST_FILE = "Arabami SatTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "vestel.com.Arabami-SatTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Arabami Sat.app/Arabami Sat";
+			};
+			name = Debug;
+		};
+		7C8C80DD264A9EF000BE3998 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 776334A61486A518D86C747E /* Pods-Arabami SatTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VELY22CN9P;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Pods",
+					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
+				);
+				INFOPLIST_FILE = "Arabami SatTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "vestel.com.Arabami-SatTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Arabami Sat.app/Arabami Sat";
+			};
+			name = Release;
+		};
 		7CDED47926457C4E00DDB3BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -599,6 +789,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7C8C80DE264A9EF000BE3998 /* Build configuration list for PBXNativeTarget "Arabami SatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C8C80DC264A9EF000BE3998 /* Debug */,
+				7C8C80DD264A9EF000BE3998 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7CDED46226457C4C00DDB3BE /* Build configuration list for PBXProject "Arabami Sat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

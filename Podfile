@@ -15,5 +15,10 @@ target 'Arabami Sat' do
   pod 'FirebaseFirestoreSwift'
   pod 'RealmSwift'
   pod 'SwiftLint'
+  
+  target 'Arabami SatTests' do
+      inherit! :search_paths
+      pod 'FBSDKLoginKit'
+  end
 
 end

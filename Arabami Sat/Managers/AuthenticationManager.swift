@@ -15,14 +15,25 @@ enum AuthType {
     case google
 }
 
+enum LoginResult {
+    case success
+    case cancelled
+    case error
+    case none
+}
+
 class AuthenticationManager: NSObject {
     var handler: ((AuthDataResult?, Error?) -> Void)?
     private var type: AuthType?
     private var viewController: UIViewController?
+    
+    let loginManager: LoginManager
+    var loginResult: LoginResult = .none
 
-    init(type: AuthType, viewController: UIViewController) {
+    init(type: AuthType, viewController: UIViewController, loginManager: LoginManager = LoginManager()) {
         self.type = type
         self.viewController = viewController
+        self.loginManager = loginManager
         super.init()
     }
 
@@ -52,10 +63,11 @@ class AuthenticationManager: NSObject {
     }
 
     private func signInWithFacebook() {
-        LoginManager().logIn(permissions: [], from: self.viewController) { (result, error) in
+        self.loginManager.logIn(permissions: ["email", "public_profile"], from: self.viewController) { (result, error) in
             // Check for error
             guard error == nil else {
                 // Error occurred
+                self.loginResult = .error
                 self.handler?(nil, error)
                 return
             }
@@ -63,11 +75,13 @@ class AuthenticationManager: NSObject {
             // Check for cancel
             guard let result = result, !result.isCancelled else {
                 print("User cancelled login")
+                self.loginResult = .cancelled
                 self.handler?(nil, error)
                 return
             }
 
             // Successfully logged in
+            self.loginResult = .success
             guard let accessToken = AccessToken.current else { return }
             let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
             Auth.auth().signIn(with: credential, completion: self.handler)
@@ -90,10 +104,12 @@ class AuthenticationManager: NSObject {
 extension AuthenticationManager: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
+            self.loginResult = .error
             self.handler?(nil, error)
             return
         }
 
+        self.loginResult = .success
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
