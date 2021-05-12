@@ -1,6 +1,6 @@
 //
 //  GoogleLoginDelegateMock.swift
-//  Arabami Sat
+//  Arabami SatTests
 //
 //  Created by Slavcho Petkovski on 11.5.21.
 //

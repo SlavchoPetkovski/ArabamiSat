@@ -28,7 +28,8 @@ Here is a full list:
 
 1. `Realm` and `RealmSwift` - Used as a DB for storing images for offline mode.
 1. `Firebase/Firestore` - Used as a Cloud DB to sync the cars with the Cloud.
-1. `Firebase/Core`, `Firebase/Analytics`, `Firebase/Performance`, `Firebase/Crashlytics` - Also used for product analytics, feedback collection and reporting/fixing crashes.
+1. `Firebase/Core`, `Firebase/Auth`,  `Firebase/Analytics`, `Firebase/Performance`, `Firebase/Storage`,  `Firebase/Crashlytics` - Also used for product analytics, feedback collection and reporting/fixing crashes.
+1. `FBSDKLoginKit` and `GoogleSignIn` - Used for authenticating user.
 1. `SwiftLint` - Linter for code style improvement.
 
 ## Localization
@@ -36,10 +37,13 @@ Here is a full list:
 Struct with localized strings could be found in `LocalizedStrings.swift` file.
 
 ## AuthenticationManager.swift
+
 Constains logic for authenticating the user with Facebook and Google. (Firebase OAuth)
 
 ## DBManager.swift
+
 Contains logic for writing and reading from local Realm database for images and for writing and reading the FirestoreDB. Also it is responsible for uploading/downloading images from storage.
 
 ## Unit testing
+
 The AuthenticationManager is fully tested using mocks. Same approach should be used for other managers (which are testable).
